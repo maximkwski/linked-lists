@@ -20,14 +20,51 @@ class LinkedList {
     }
 
     prepend(value) {
-        const node = new Node(value);
-        if (this.isEmpty()){
+        const node = new Node(value)
+        if (!this.isEmpty()){
+            node.next = this.head
+        } 
+        this.head = node
+        this.size++
+    }
+
+    append(value) {
+        const node = new Node(value)
+        if(this.isEmpty()) {
             this.head = node
+        } else {
+            let prev = this.head
+            console.log(prev)
+            while(prev.next) {
+                prev = prev.next
+            }
+            prev.next = node
+
         }
         this.size++
+    }
+
+    print() {
+        if(this.isEmpty()) {
+            console.log('List is empty')
+        } else {
+            let curr = this.head
+            let listValues = ''
+            while(curr) {
+                listValues += `${curr.value} `
+                curr = curr.next
+            }
+            console.log(listValues)
+        }
     }
 }
 
 const list = new LinkedList();
-console.log('list is empty: ', list.isEmpty());
-console.log('list size: ', list.getSize());
+list.print();
+list.prepend('sho');
+list.print();
+list.prepend('cho');
+list.append('tam');
+
+list.print();
+console.log(list);
