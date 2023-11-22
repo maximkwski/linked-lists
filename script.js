@@ -148,6 +148,35 @@ class LinkedList {
         
         }
     }
+
+    contains(value) {
+        let curr = this.head
+        for (let i = 0; i < this.size; i++) {
+            if (curr.value != value) {
+                curr = curr.next
+            } else {
+                return true
+            }  
+            
+        }
+        return false
+    }
+
+    find(value) {
+        let curr = this.head
+     
+        for (let i = 0; i < this.size; i++) {
+            if (curr.value === value) {
+                return i
+            } else if (i === this.size - 1 && curr.value != value) {
+                console.log('not found')
+                return
+            } else {
+                curr = curr.next
+            } 
+            
+        }
+    }
 }
 
 const list = new LinkedList();
@@ -163,3 +192,6 @@ list.insertAt('kaban', 1);
 list.print();
 console.log('prev is ', list.pop());
 list.print();
+
+console.log(list.contains('kaban'));
+console.log(list.find('sho'));
