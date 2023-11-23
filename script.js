@@ -54,7 +54,6 @@ class LinkedList {
             this.head = node
         } else {
             let prev = this.head
-            console.log(prev)
             while(prev.next) {
                 prev = prev.next
             }
@@ -71,9 +70,10 @@ class LinkedList {
             let curr = this.head
             let listValues = ''
             while(curr) {
-                listValues += `${curr.value} `
+                listValues += `${curr.value} -> `
                 curr = curr.next
             }
+            listValues += 'null'
             console.log(listValues)
         }
     }
@@ -87,7 +87,6 @@ class LinkedList {
             while (i < index) {
                 curr = curr.next
                 i++
-                console.log(curr)
             }
             return curr
         }
@@ -128,25 +127,25 @@ class LinkedList {
             removedNode = prev.next
             prev.next = removedNode.next
         }
-        this.size++
+        this.size--
         return removedNode.value
     }
 
     pop() {
+        let removedNode
         if (this.isEmpty()){
             console.log('the list is empty')
         } else {
             let prev = this.head
-            let removedNode
-            for (let i = 0; i < this.size - 1; i++) {
+            for (let i = 0; i < this.size - 2; i++) {
                 prev = prev.next
             }
             removedNode = prev.next
-            prev.next = null
-            return removedNode.value
-            
-        
+            prev.next = removedNode.next
         }
+        this.size--
+        return removedNode.value
+
     }
 
     contains(value) {
@@ -180,18 +179,10 @@ class LinkedList {
 }
 
 const list = new LinkedList();
-list.print();
-list.prepend('sho');
-list.print();
-list.prepend('cho');
-list.append('tam');
 
+list.prepend('woo');
+list.prepend('foo');
+list.append('cap');
+list.append('shats');
+list.append('buzz');
 list.print();
-console.log(list);
-list.insertAt('kaban', 1);
-list.print();
-console.log('prev is ', list.pop());
-list.print();
-
-console.log(list.contains('kaban'));
-console.log(list.find('sho'));
